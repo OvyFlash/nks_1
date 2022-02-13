@@ -29,7 +29,7 @@ func NewConfig() (c Config) {
 	_, err := toml.DecodeFile(parsedConfigPath, &c)
 	if err != nil {
 		log.Println(`Broken or missing config file. 
-Provide path to your config file by using "-config-path=<path_to_your_config_file>" or put it in the project's root`)
+Provide path to your config file by using "-config-path=<path_to_your_config_file>.toml" or put it in the project's root`)
 		os.Exit(1)
 	}
 
