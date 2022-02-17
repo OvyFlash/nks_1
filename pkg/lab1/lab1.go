@@ -46,7 +46,7 @@ func (l *Lab1) Start() {
 	//6. Відсотковий наробіток на відмову
 	l.calculateTy()
 	//7. Ймовірність безвідмовної роботи на час time_1
-	l.calculateTt1()
+	l.Tt1 = l.calculateTt(float64(l.Time1))
 	//8. Інтенсивність відмов на час time_2
 	l.calculateLambda()
 }
@@ -103,18 +103,19 @@ func (l *Lab1) calculateTy() {
 	}
 }
 
-func (l *Lab1) calculateTt1() {
+func (l *Lab1) calculateTt(t float64) (tt float64){
+	
 	for _, v := range l.Intervals {
-		if float64(l.Time1) >= v[models.MinIdx] {
-			if v[models.MinIdx]+l.h < float64(l.Time1) {
-				l.Tt1 += v[models.DensityIdx] * l.h
+		if float64(t) >= v[models.MinIdx] {
+			if v[models.MinIdx]+l.h < float64(t) {
+				tt += v[models.DensityIdx] * l.h
 				continue
 			}
-			l.Tt1 += v[models.DensityIdx] * (float64(l.Time1) - v[models.MinIdx])
+			tt += v[models.DensityIdx] * (float64(t) - v[models.MinIdx])
 			break
 		}
 	}
-	l.Tt1 = 1 - l.Tt1
+	return 1 - tt
 }
 
 func (l *Lab1) calculateLambda() {
@@ -126,7 +127,7 @@ func (l *Lab1) calculateLambda() {
 		}
 	}
 
-	l.Lambda = maxDensity / l.Tt1
+	l.Lambda = maxDensity / l.calculateTt(float64(l.Time2))
 }
 
 func (l Lab1) String() string {
