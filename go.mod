@@ -1,4 +1,4 @@
-module lab1
+module nks
 
 go 1.17
 

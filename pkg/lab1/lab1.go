@@ -2,14 +2,14 @@ package lab1
 
 import (
 	"fmt"
-	"lab1/configs"
-	"lab1/pkg/models"
+	"nks/configs"
+	"nks/pkg/models"
 	"sort"
 	"strings"
 )
 
 type Lab1 struct {
-	configs.Config `json:"-"`
+	configs.Lab1Config `json:"-"`
 	//result field
 	Tcp       float64                         `json:"Tcp"`
 	Ty        float64                         `json:"Ty"`
@@ -24,8 +24,8 @@ const (
 	smallNumber    = 1e-5
 )
 
-func NewLab1(c configs.Config) Lab1 {
-	return Lab1{Config: c}
+func NewLab1(c configs.Lab1Config) Lab1 {
+	return Lab1{Lab1Config: c}
 }
 
 func (l *Lab1) Start() {
@@ -103,8 +103,8 @@ func (l *Lab1) calculateTy() {
 	}
 }
 
-func (l *Lab1) calculateTt(t float64) (tt float64){
-	
+func (l *Lab1) calculateTt(t float64) (tt float64) {
+
 	for _, v := range l.Intervals {
 		if float64(t) >= v[models.MinIdx] {
 			if v[models.MinIdx]+l.h < float64(t) {

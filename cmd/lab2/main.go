@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"nks/configs"
-	"nks/pkg/lab1"
+	"nks/pkg/lab2"
 )
 
 func main() {
 	c := configs.NewConfig()
-	l := lab1.NewLab1(c.Lab1Config)
+	l := lab2.NewLab2(c.Lab2Config)
 	l.Start()
 	//Print result
 	fmt.Println(l)

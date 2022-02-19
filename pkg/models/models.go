@@ -35,3 +35,8 @@ func CountDeltha(gamma float64, idx int, intervals []Interval) float64 {
 	probLast = intervals[idx][UninterruptedProbIdx]
 	return (probLast - gamma) / (probLast - probFirst)
 }
+
+type TableAndProbSystem struct {
+	Table []bool
+	Prob  float64
+}

@@ -9,10 +9,25 @@ import (
 )
 
 type Config struct {
+	Lab1Config `toml:"lab_1"`
+	Lab2Config `toml:"lab_2"`
+}
+
+type Lab1Config struct {
 	Data  []int   `toml:"data"`
 	Gamma float64 `toml:"gamma"`
 	Time1 int     `toml:"time1"`
 	Time2 int     `toml:"time2"`
+}
+type Lab2Config struct {
+	Vertexes []Vertex `toml:"vetrexes"`
+}
+
+type Vertex struct {
+	Edges             []bool  `toml:"edges"`
+	HasExit           bool    `toml:"has_exit"`
+	HasStart          bool    `toml:"has_start"`
+	UninterruptedProb float64 `toml:"probability"`
 }
 
 var (
